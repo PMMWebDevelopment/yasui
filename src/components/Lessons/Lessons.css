@@ -1,0 +1,60 @@
+.Lessons {
+    background-image: url('../../assets/images/tokyoneon.jpg');
+    background-size: cover;
+    min-height: 79vh;
+    color: white;
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.LessonsHeader h1 {
+    font-size: 56px;
+    font-weight: 900;
+}
+
+.LessonsMessage {
+    background-color: rgba(220, 53, 69, 0.75);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.LessonsMessage h5 {
+    font-size: 24px;
+}
+
+.LessonSectionDiv1,
+.LessonSectionDiv2,
+.LessonSectionDiv3 {
+    margin-top: 20px;
+    height: 180px;
+    cursor: pointer;
+    padding-top: 20px;
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.LessonSectionDiv1 {
+    background-color: rgba(206, 131, 131, 0.75);
+}
+
+.LessonSectionDiv2 {
+    background-color: rgba(227, 38, 39, 0.75);
+}
+
+.LessonSectionDiv3 {
+    background-color: rgba(48, 2, 2, 0.75);
+}
+
+@media (max-width: 768px) {
+    .Lessons {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .LessonsMessage {
+        margin-top: 10px;
+        padding: 10px;
+    }
+}

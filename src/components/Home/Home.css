@@ -1,0 +1,63 @@
+.Home {
+    background-image: url('../../assets/images/japanesehouse.jpg');
+    background-size: cover;
+    min-height: 79vh;
+    color: white;
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.HomeHeader {
+    text-shadow: 2px 2px 2px black;
+}
+
+.HomeHeader h1 {
+    font-size: 56px;
+    font-weight: 900;
+}
+
+.HomeSubHeader h2 {
+    text-shadow: 1px 1px 1px black;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.HomeMessage {
+    background-color: rgba(220, 53, 69, 0.75);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.HomeMessage h3 {
+    font-size: 18px;
+}
+
+.HomeMessage h4 {
+    font-size: 16px;
+}
+
+.HomeButton {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .Home {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .HomeSubHeader h2 {
+        font-size: 16px;
+    }
+
+    .HomeMessage {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    .HomeButton {
+        margin-top: 10px;
+    }
+}

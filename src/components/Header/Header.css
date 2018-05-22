@@ -1,0 +1,10 @@
+.Header {
+    display: block;
+    width: 100%;
+}
+
+.NavItem {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

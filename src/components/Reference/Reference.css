@@ -1,0 +1,19 @@
+.Reference {
+    background-color: white;
+    min-height: 79vh;
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.ReferenceHeader h1 {
+    color: #DC3545;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.ReferenceContent {
+    min-height: 60vh;
+    background-color: #DC3545;
+}

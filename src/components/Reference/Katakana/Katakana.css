@@ -1,0 +1,26 @@
+.Katakana {
+    background-color: white;
+    min-height: 79vh;
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.KatakanaHeader h1 {
+    color: #DC3545;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.KatakanaContent {
+    min-height: 60vh;
+    background-color: #DC3545;
+    color: white;
+}
+
+.KatakanaButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 15px;
+}

@@ -1,0 +1,62 @@
+.VerbCharts {
+    background-color: white;
+    min-height: 79vh;
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.VerbChartsHeader h1 {
+    color: #DC3545;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.VerbChartsMessage {
+    font-size: 24px;
+    color: #DC3545;
+    font-weight: 700;
+}
+
+.VerbChartsRow1,
+.VerbChartsRow2 {
+    background-color: #DC3545;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.VerbChartsRow1 {
+    padding-top: 5px;
+    padding-bottom: 5px
+}
+
+.VerbChartsRow2 {
+    min-height: 50vh;
+    display: block;
+}
+
+.SubRow {
+    margin-bottom: 10px;
+}
+
+.VerbChartsRow2 p,
+.Tenses {
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+}
+.Tenses {
+    text-align: center;
+}
+
+.Tenses table {
+    width: 100%;
+    table-layout: auto !important;
+}
+
+.Tenses td {
+    padding-left: 2px;
+    padding-right: 2px;
+}
