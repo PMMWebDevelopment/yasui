@@ -1,6 +1,9 @@
+/* @import url('//fonts.googleapis.com/earlyaccess/notosansjp.css'); */
+
 .App {
     width: 100vw;
     padding: 0 !important;
     margin: 0 !important;
+    font-family: 'Yu Gothic', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', '游ゴシック', '游ゴシック体', 'ＭＳ ゴシック', 'MS Gothic', sans-serif !important;
     text-align: center;
 }

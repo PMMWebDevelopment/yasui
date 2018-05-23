@@ -66,6 +66,10 @@
 
 * Installed lodash.shuffle 4.2.0 to shuffle arrays so that only a handful of the examples available for each lesson need be shown on any visit to the site. This will provide a better fit for the UI and also provide a bit of variety for repeat visitors.
 
+* Installed babel-polyfill 6.26.0 and core-js 2.5.6 to circumvent problem of app not showing at all in MS Edge / IE11. Latter package required importing to index.js entry point file.
+
+* Commented out Redux Dev Tools line from store/index.js file as it was causing an error to be thrown in IE11. (Not needed for production build anyway.)
+
 <!-- * Installed react-auth-firebase 1.2.1 -->
 
 ## TO DO

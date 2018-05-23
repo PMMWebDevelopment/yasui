@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "grammar": {
+      ".read": true,
+      ".write": "auth != null",
+      ".indexOn": [
+        "section"
+      ]
+    },
+    "sentences": {
+      ".read": true,
+      ".write": "auth != null",
+      ".indexOn": [
+        "lesson"
+      ]
+    },
+    "verbs": {
+      ".read": true,
+      ".write": "auth != null"
+    }
+  }
+}

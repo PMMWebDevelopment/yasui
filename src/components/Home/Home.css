@@ -15,13 +15,13 @@
 
 .HomeHeader h1 {
     font-size: 56px;
-    font-weight: 900;
+    font-weight: bold;
 }
 
 .HomeSubHeader h2 {
     text-shadow: 1px 1px 1px black;
     font-size: 32px;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .HomeMessage {
