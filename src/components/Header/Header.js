@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import firebase from "../../higherorder/firebase/firebase"; 
 import { connect } from 'react-redux'
 import {
-    setLessonSection
+    setLessonSection,
+    setUserEmail,
+    setAuthState
 } from '../../store/actions';
 
 import classes from './Header.css';
@@ -38,6 +41,13 @@ class Header extends Component {
 
     handleLessonSectionChoice(chosenLessonSection) {
         this.props.setLessonSection(chosenLessonSection);
+    }
+
+    logout() {
+        firebase.auth().signOut().then(() => {
+            this.props.setUserEmail('');
+            this.props.setAuthState(false);
+        });
     }
 
     render() {
@@ -82,18 +92,19 @@ class Header extends Component {
                                     Reference
                                 </NavLink>
                             </NavItem>
-                            {/* {this.props.authenticated ? 
+                            {
+                                this.props.authState ? 
                                 <NavItem className={classes.NavItem}>
-                                    <NavLink to='/' style={{ textDecoration: 'none', color: 'white' }}>
-                                    Log out: {this.props.currentUser}
+                                    <NavLink to='/' style={{ textDecoration: 'none', color: 'white' }} onClick={this.logout}>
+                                    Log out: {this.props.userEmail}
                                     </NavLink>
-                                </NavItem> : */}
-                                {/* <NavItem className={classes.NavItem}>
+                                </NavItem> :
+                                <NavItem className={classes.NavItem}>
                                     <NavLink to='/signuplogin' style={{ textDecoration: 'none', color: 'white' }}>
                                         Sign up / Log in
                                     </NavLink>
-                                </NavItem> */}
-                            {/* } */}
+                                </NavItem>
+                            }
                         </Nav>
                     </Collapse>
                 </Navbar>
@@ -105,12 +116,16 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         chosenLessonSection: state.reducer.chosenLessonSection,
-        chosenLesson: state.reducer.chosenLesson
+        chosenLesson: state.reducer.chosenLesson,
+        userEmail: state.reducer.userEmail,
+        authState: state.reducer.authState
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    setLessonSection: chosenLessonSection => dispatch(setLessonSection(chosenLessonSection))
+    setLessonSection: chosenLessonSection => dispatch(setLessonSection(chosenLessonSection)),
+    setUserEmail: userEmail => dispatch(setUserEmail(userEmail)),
+    setAuthState: authState => dispatch(setAuthState(authState))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

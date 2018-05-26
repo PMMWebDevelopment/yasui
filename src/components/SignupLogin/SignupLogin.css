@@ -1,0 +1,35 @@
+    .SignupLogin {
+        background-image: url('../../assets/images/tokyopark.jpg');
+        background-size: cover;
+        min-height: 79vh;
+        color: white;
+        text-align: center;
+        display: block;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .SignupLoginHeader {
+        text-shadow: 2px 2px 2px black;
+    }
+    
+    .SignupLoginHeader h1 {
+        font-size: 44px;
+        font-weight: 900;
+    }
+    
+    .Form {
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    .SignupLoginButton {
+        margin: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .SignupLogin {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }

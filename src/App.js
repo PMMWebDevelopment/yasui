@@ -41,9 +41,9 @@ const asyncKatakana = asyncComponent(() => {
   return import('./components/Reference/Katakana/Katakana');
 });
 
-// const asyncSignupLogin = asyncComponent(() => {
-//   return import('./components/SignupLogin/SignupLogin');
-// });
+const asyncSignupLogin = asyncComponent(() => {
+  return import('./components/SignupLogin/SignupLogin');
+});
 
 class App extends Component {
 
@@ -60,7 +60,7 @@ class App extends Component {
         {/* <Route path="/verbcheatsheet" component={asyncVerbCheatsheet} /> */}
         <Route path="/hiragana" component={asyncHiragana} />
         <Route path="/katakana" component={asyncKatakana} />
-        {/* <Route path="/signuplogin" component={asyncSignupLogin} /> */}
+        <Route path="/signuplogin" component={asyncSignupLogin} />
         <Redirect to="/" />
       </Switch>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col, Button, Badge } from 'reactstrap';
 import { connect } from 'react-redux';
 import {
     setLesson,
@@ -66,10 +66,11 @@ class LessonSection extends Component {
     }
       
     setGrammarPointButtons() {
-        const grammarPointButtonList = []; 
+        const grammarPointButtonList = [];
         for (let i = 0; i < this.state.lessonsThisSection.length; i+=1) {
+            let buttonColor = this.state.lessonsThisSection[i][0] === this.props.bookmarkedLessonNumber ? 'success' : 'danger';
             grammarPointButtonList.push(
-                <GrammarPointButton onClick={() => this.handleLessonChoice(this.state.lessonsThisSection[i][0])} key={this.state.lessonsThisSection[i][0]} grammarpoint={this.state.lessonsThisSection[i][1]} />
+                <GrammarPointButton color={buttonColor} onClick={() => this.handleLessonChoice(this.state.lessonsThisSection[i][0])} key={this.state.lessonsThisSection[i][0]} grammarpoint={this.state.lessonsThisSection[i][1]} />
             );
         }
         this.setState({grammarPointButtons: grammarPointButtonList});
@@ -97,6 +98,11 @@ class LessonSection extends Component {
     
     render() {
 
+        let bookmarkPresenceIndicator =
+            this.props.bookmarkedLessonNumber >= this.state.startIDThisSection &&
+            this.props.bookmarkedLessonNumber <= (this.state.lessonsThisSection.length - 1) ? 
+            <Badge color='success'>Green button = Bookmarked lesson</Badge> : null;
+
         return (
             <div className={classes.LessonSection}>
                 <Container fluid>
@@ -116,6 +122,7 @@ class LessonSection extends Component {
                         <Col>
                             <Button className={classes.LessonSectionButtons} color='warning' size='md' disabled={this.props.chosenLessonSection === 1} onClick={() => this.handleLessonSectionChoice(this.props.chosenLessonSection - 1)}>Previous section</Button>
                             <Button className={classes.LessonSectionButtons} color='warning' size='md' disabled={this.props.chosenLessonSection === 3} onClick={() => this.handleLessonSectionChoice(this.props.chosenLessonSection + 1)}>Next section</Button>
+                            {bookmarkPresenceIndicator}
                         </Col>
                     </Row>
                 </Container>
@@ -131,7 +138,8 @@ const mapStateToProps = state => {
         chosenLessonName: state.reducer.chosenLessonName,
         chosenLessonCommentaryID: state.reducer.chosenLessonCommentaryID,
         chosenLessonLayout: state.reducer.chosenLessonLayout,
-        sectionForChosenLesson: state.reducer.sectionForChosenLesson
+        sectionForChosenLesson: state.reducer.sectionForChosenLesson,
+        bookmarkedLessonNumber: state.reducer.bookmarkedLessonNumber,
     }
 };
 

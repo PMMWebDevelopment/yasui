@@ -5,7 +5,9 @@ import classes from './GrammarPointButton.css';
 
 const grammarPointButton = (props) => {
     return (
-            <Button onClick={props.onClick} className={classes.GrammarPointButton} color='danger' size='md'>     
+            <Button onClick={props.onClick} className={classes.GrammarPointButton}
+            color={props.color}
+            size='md'>     
                 <Link to='/lesson' style={{ textDecoration: 'none', color: 'white' }} grammarpoint={props.grammarpoint}>
                     {props.grammarpoint}
                 </Link>

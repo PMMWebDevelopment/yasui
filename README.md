@@ -76,6 +76,8 @@
 
 * Add user authentication so that users can bookmark lesson pages and call them back up automatically on login
 
+        - <https://stackoverflow.com/questions/36683770/react-how-to-get-the-value-of-an-input-field>
+
 * Build verb cheatsheets
 
 * Add list of external learning resources

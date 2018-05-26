@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from "../../../higherorder/firebase/firebase"; 
 import axios from 'axios';
 import Interweave from 'interweave';
 import { Link } from 'react-router-dom';
@@ -11,7 +12,9 @@ import {
     setLessonName,
     setLessonCommentaryID,
     setLessonLayout,
-    setSectionForChosenLesson
+    setSectionForChosenLesson,
+    setUsersBookmarkID,
+    commitBookmarkToCentralStore
 } from '../../../store/actions';
 import shuffle from 'lodash.shuffle';
 import Spinner from '../../UI/Spinner';
@@ -161,9 +164,35 @@ class Lesson extends Component {
         }
     }
 
+    saveBookmark(bookmark, bookmarkId) {
+        firebase.auth().currentUser.getIdToken().then((idToken) => {
+            if (this.props.bookmarkedLessonNumber !== null) {
+                this.props.commitBookmarkToCentralStore(bookmark.bookmarkNumber);
+                // if user has bookmark - update it
+                axios.put('https://yasui-pmm.firebaseio.com/bookmarks/' + bookmarkId + '.json?auth=' + idToken, bookmark);
+            } else {
+                this.props.commitBookmarkToCentralStore(bookmark.bookmarkNumber);
+                // if user has no bookmark - create one    
+                axios.post('https://yasui-pmm.firebaseio.com/bookmarks.json?auth=' + idToken, bookmark);
+            }
+        },
+            (err) => {
+              window.alert(err.message);
+        });
+    }
+
     render() {
 
         let lessonNumber = this.props.chosenLesson === 0 ? 'Introduction' : 'Lesson ' + this.props.chosenLesson;
+
+        let bookmarkButtonText = this.props.chosenLesson === this.props.bookmarkedLessonNumber ? 'Lesson bookmarked' : 'Bookmark this lesson';
+
+        let bookmarkButtonDisabled = this.props.chosenLesson === this.props.bookmarkedLessonNumber;
+
+        let bookmarkData = {
+            user: this.props.userEmail,
+            bookmarkNumber: this.props.chosenLesson
+          }
 
         return (
             <div className={classes.Lesson}>
@@ -203,7 +232,20 @@ class Lesson extends Component {
                                     this.handleLessonChoice(this.props.chosenLesson + 1);
                                 }}>
                                     Next lesson
-                                </Button>
+                            </Button>
+                            {
+                                this.props.authState ? 
+                                <Button
+                                    to='/lesson'
+                                    className={classes.LessonButton}
+                                    color='info'
+                                    size='md'
+                                    disabled={bookmarkButtonDisabled}
+                                    onClick={() => this.saveBookmark(bookmarkData, this.props.usersBookmarkID)}
+                                >
+                                    {bookmarkButtonText}
+                                </Button> : null
+                            }
                         </Col>
                     </Row>
                 </Container>
@@ -219,7 +261,11 @@ const mapStateToProps = state => {
         chosenLessonName: state.reducer.chosenLessonName,
         chosenLessonCommentaryID: state.reducer.chosenLessonCommentaryID,
         chosenLessonLayout: state.reducer.chosenLessonLayout,
-        sectionForChosenLesson: state.reducer.sectionForChosenLesson
+        sectionForChosenLesson: state.reducer.sectionForChosenLesson,
+        userEmail: state.reducer.userEmail,
+        authState: state.reducer.authState,
+        usersBookmarkID: state.reducer.usersBookmarkID,
+        bookmarkedLessonNumber: state.reducer.bookmarkedLessonNumber,
     }
 };
 
@@ -229,7 +275,9 @@ const mapDispatchToProps = dispatch => ({
     setLessonName: chosenLessonName => dispatch(setLessonName(chosenLessonName)),
     setLessonCommentaryID: chosenLessonCommentaryID => dispatch(setLessonCommentaryID(chosenLessonCommentaryID)),
     setLessonLayout: chosenLessonLayout => dispatch(setLessonLayout(chosenLessonLayout)),
-    setSectionForChosenLesson: sectionForChosenLesson => dispatch(setSectionForChosenLesson(sectionForChosenLesson))
+    setSectionForChosenLesson: sectionForChosenLesson => dispatch(setSectionForChosenLesson(sectionForChosenLesson)),
+    setUsersBookmarkID: usersBookmarkID => dispatch(setUsersBookmarkID(usersBookmarkID)),
+    commitBookmarkToCentralStore: bookmarkedLessonNumber => dispatch(commitBookmarkToCentralStore(bookmarkedLessonNumber))
 });
 
 export default connect (mapStateToProps, mapDispatchToProps) (Lesson);
