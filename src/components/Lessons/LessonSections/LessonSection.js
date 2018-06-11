@@ -99,8 +99,10 @@ class LessonSection extends Component {
     render() {
 
         let bookmarkPresenceIndicator =
+            this.props.authState &&
+            this.props.bookmarkedLessonNumber !== null &&
             this.props.bookmarkedLessonNumber >= this.state.startIDThisSection &&
-            this.props.bookmarkedLessonNumber <= (this.state.lessonsThisSection.length - 1) ? 
+            this.props.bookmarkedLessonNumber <= (this.state.startIDThisSection + (this.state.lessonsThisSection.length - 1)) ? 
             <Badge color='success'>Green button = Bookmarked lesson</Badge> : null;
 
         return (
@@ -139,6 +141,7 @@ const mapStateToProps = state => {
         chosenLessonCommentaryID: state.reducer.chosenLessonCommentaryID,
         chosenLessonLayout: state.reducer.chosenLessonLayout,
         sectionForChosenLesson: state.reducer.sectionForChosenLesson,
+        authState: state.reducer.authState,
         bookmarkedLessonNumber: state.reducer.bookmarkedLessonNumber,
     }
 };
